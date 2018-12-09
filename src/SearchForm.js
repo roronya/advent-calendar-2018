@@ -1,6 +1,8 @@
 import React from "react";
 import { Formik } from "formik";
 
+const range = (i, j) => [...Array(j).keys()].slice(i, j);
+
 const InnerForm = ({ values, candidates, handleChange, handleSubmit }) => (
   <form onSubmit={handleSubmit}>
     <div style={{ display: "flex", justifyContent: "center" }}>
@@ -22,7 +24,7 @@ const InnerForm = ({ values, candidates, handleChange, handleSubmit }) => (
       <label>開始時刻</label>
       <select value={values.timeFrom} name="timeFrom" onChange={handleChange}>
         <option value="null">指定なし</option>
-        {[...Array(24).keys()].slice(11, 23).map(t => (
+        {range(10, 23).map(t => (
           <option key={`dateFrom${t}`} value={`${t}:00`}>
             {t}:00
           </option>
@@ -31,7 +33,7 @@ const InnerForm = ({ values, candidates, handleChange, handleSubmit }) => (
       ~
       <select value={values.timeTo} name="timeTo" onChange={handleChange}>
         <option value="null">指定なし</option>
-        {[...Array(24).keys()].slice(11, 23).map(t => (
+        {range(10, 23).map(t => (
           <option key={`dateTo${t}`} value={`${t}:00`}>
             {t}:00
           </option>
