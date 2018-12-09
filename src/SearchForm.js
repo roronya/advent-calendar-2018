@@ -1,7 +1,7 @@
 import React from "react";
 
-export default () => (
-  <form>
+export default ({ handleSubmit }) => (
+  <form onSubmit={handleSubmit}>
     <div>
       <input type="radio" id="12/9" name="date" value="12/9" />
       <label htmlFor="12/9">今日12/9</label>
@@ -24,5 +24,6 @@ export default () => (
         <option value="11:30">11:30</option>
       </select>
     </div>
+    <input type="submit" value="指定した条件で探す" />
   </form>
 );
