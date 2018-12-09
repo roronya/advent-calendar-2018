@@ -6,7 +6,7 @@ export default () => (
   <Formik
     initialValues={(() => {
       const now = new Date();
-      const month = now.getMonth();
+      const month = now.getMonth() + 1;
       const day = now.getDate();
       const date = `${month}/${day}`;
       const hour = now.getHours() + 1;
@@ -34,15 +34,15 @@ export default () => (
         candidates={(() => {
           // 日付の選択候補の算出
           let now = new Date();
-          const today = `${now.getMonth()}/${now.getDate()}`;
+          const today = `${now.getMonth() + 1}/${now.getDate()}`;
           now.setDate(now.getDate() + 1);
-          const tomorrow = `${now.getMonth()}/${now.getDate()}`;
+          const tomorrow = `${now.getMonth() + 1}/${now.getDate()}`;
           while (now.getDay() !== 6) {
             now.setDate(now.getDate() + 1);
           }
-          const sut = `${now.getMonth()}/${now.getDate()}`;
+          const sut = `${now.getMonth() + 1}/${now.getDate()}`;
           now.setDate(now.getDate() + 1);
-          const sun = `${now.getMonth()}/${now.getDate()}`;
+          const sun = `${now.getMonth() + 1}/${now.getDate()}`;
           return [
             { label: `今日${today}`, value: `${today}` },
             { label: `明日${tomorrow}`, value: `${tomorrow}` },
