@@ -46,21 +46,50 @@ const InnerForm = ({ values, candidates, handleChange, handleSubmit }) => (
 
 export default () => (
   <Formik
-    initialValues={{
-      date: "12/9",
-      timeFrom: "11:00",
-      timeTo: "null"
+    initialValues={(() => {
+      const now = new Date();
+      const month = now.getMonth();
+      const day = now.getDate();
+      const date = `${month}/${day}`;
+      const hour = now.getHours() + 1;
+      return {
+        date: date,
+        timeFrom: `${hour}:00`,
+        timeTo: "null"
+      };
+    })()}
+    onSubmit={values => {
+      // APIを叩くために変換する
+      const params = {
+        date: values.date,
+        time_from: values.timeFrom === "null" ? null : values.timeFrom,
+        time_to: values.timeTo === "null" ? null : values.timeTo
+      };
+      // axios.get(endpoint, {params: params})
+      // APIを叩く代わりにalertする
+      alert(JSON.stringify(params));
     }}
-    onSubmit={values => alert(JSON.stringify(values))}
     render={({ values, handleSubmit, handleChange }) => (
       <InnerForm
         values={values}
-        candidates={[
-          { label: "今日12/9", value: "12/9" },
-          { label: "明日12/10", value: "12/10" },
-          { label: "土曜12/15", value: "12/15" },
-          { label: "日曜12/16", value: "12/16" }
-        ]}
+        candidates={(() => {
+          let now = new Date();
+          const today = `${now.getMonth()}/${now.getDate()}`;
+          now.setDate(now.getDate() + 1);
+          const tomorrow = `${now.getMonth()}/${now.getDate()}`;
+          while (now.getDay() !== 6) {
+            now.setDate(now.getDate() + 1);
+          }
+          const sut = `${now.getMonth()}/${now.getDate()}`;
+          now.setDate(now.getDate() + 1);
+          const sun = `${now.getMonth()}/${now.getDate()}`;
+          return [
+            { label: `今日${today}`, value: `${today}` },
+            { label: `明日${tomorrow}`, value: `${tomorrow}` },
+            { label: `土曜${sut}`, value: `${sut}` },
+            { label: `日曜${sun}`, value: `${sun}` }
+          ];
+        })()}
         handleSubmit={handleSubmit}
         handleChange={handleChange}
       />
