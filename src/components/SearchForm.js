@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik } from "formik";
 import InnerForm from "./InnerSearchForm";
-import SearchCondition from "./SearchCondition";
+import SearchCondition from "../forms/SearchCondition";
 
 export default () => (
   <Formik

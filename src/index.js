@@ -5,7 +5,7 @@ import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { combineReducers, createStore } from "redux";
 import { Provider } from "react-redux";
-import SearchCondition from "./SearchCondition";
+import SearchCondition from "./forms/SearchCondition";
 
 const searchConditionReducer = (state = new SearchCondition(), action) => {
   switch (action.type) {
