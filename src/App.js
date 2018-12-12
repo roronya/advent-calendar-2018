@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import SearchForm from "./components/SearchForm";
+import SearchForm from "./containers/SearchForm";
 
 class App extends Component {
   render() {

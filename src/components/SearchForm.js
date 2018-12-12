@@ -1,21 +1,17 @@
 import React from "react";
 import { Formik } from "formik";
 import InnerForm from "./InnerSearchForm";
-import SearchCondition from "../forms/SearchCondition";
 
-export default () => (
+export default ({ searchCondition, candidates, handleSubmit }) => (
   <Formik
-    initialValues={new SearchCondition().toForm()}
+    initialValues={searchCondition}
     onSubmit={values => {
-      const params = SearchCondition.fromForm(values).toAPI();
-      // axios.get(endpoint, {params: params})
-      // APIを叩く代わりにalertする
-      alert(JSON.stringify(params));
+      handleSubmit(values);
     }}
     render={({ values, handleSubmit, handleChange }) => (
       <InnerForm
         values={values}
-        candidates={SearchCondition.getCandidates(new Date())}
+        candidates={candidates}
         handleSubmit={handleSubmit}
         handleChange={handleChange}
       />
