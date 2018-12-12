@@ -15,10 +15,7 @@ export default () => (
     render={({ values, handleSubmit, handleChange }) => (
       <InnerForm
         values={values}
-        candidates={(() => {
-          // 日付の選択候補の算出
-          return SearchCondition.getCandidates(new Date());
-        })()}
+        candidates={SearchCondition.getCandidates(new Date())}
         handleSubmit={handleSubmit}
         handleChange={handleChange}
       />
